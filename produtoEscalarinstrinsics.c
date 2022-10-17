@@ -22,14 +22,17 @@ int main(int argc, char *argv[])
     }
 
     printf("Iniciando...\n");
+    float soma = 0;
     clock_t start_sse = clock();
-
-    for (int i = 0; i < TAMANHO_VETOR; i+=4) {
-        adicionar_instrinsics(a+i, b+i, c+i);
-        multiplicacao_paralela(a+i, b+i, c+i);
-        printf("%f\n", c[i]);
-    }
-
+    for(int i = 0; i < TAMANHO_VETOR; ++i) //produto escalar sequencial
+	{	
+    	multiplicacao_paralela(a+i, b+i, c+i);
+	}
+	for(int i = 0; i < TAMANHO_VETOR; ++i)
+	{	
+    	soma += c[i];
+	}
+	printf("Produto escalar: %f\n", soma);
     clock_t end_sse = clock();
     float seconds_sse = (float)(end_sse - start_sse)/CLOCKS_PER_SEC;
 }
