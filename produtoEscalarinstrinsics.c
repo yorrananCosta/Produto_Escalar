@@ -17,8 +17,8 @@ int main(int argc, char *argv[])
     float *c __attribute__ ((aligned(16))) = (float*)malloc (sizeof(float) * TAMANHO_VETOR);
 
     for (int i = 0; i < TAMANHO_VETOR; ++i) {
-        a[i] = 1.0;
-        b[i] = 1.0;
+        a[i] = i + 0.0;
+        b[i] = i + 0.0;
     }
 
     printf("Iniciando...\n");
@@ -61,5 +61,5 @@ void multiplicacao_paralela(float *a, float *b, float *c) {
     __m128 varA = _mm_load_ps (a);
     __m128 varB = _mm_load_ps (b);
     __m128 varC = _mm_mul_ps (varA, varB);
-    _mmstore_ps(c, varC); 
+    _mm_store_ps(c, varC);
 }
